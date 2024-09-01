@@ -1,0 +1,53 @@
+-- Criação da tabela de Escolas
+CREATE TABLE Escolas (
+    id_escola INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    telefone VARCHAR(15)
+);
+
+-- Criação da tabela de Alunos
+CREATE TABLE Alunos (
+    id_aluno INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    id_escola INT,
+    FOREIGN KEY (id_escola) REFERENCES Escolas(id_escola)
+);
+
+-- Criação da tabela de Serviços de Saúde
+CREATE TABLE ServicosSaude (
+    id_servico INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50),
+    endereco VARCHAR(255) NOT NULL,
+    telefone VARCHAR(15)
+);
+
+-- Criação da tabela de Pacientes
+CREATE TABLE Pacientes (
+    id_paciente INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    id_servico INT,
+    FOREIGN KEY (id_servico) REFERENCES ServicosSaude(id_servico)
+);
+
+-- Criação da tabela de Oportunidades de Emprego
+CREATE TABLE OportunidadesEmprego (
+    id_emprego INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    empresa VARCHAR(100),
+    localizacao VARCHAR(255),
+    salario DECIMAL(10, 2)
+);
+
+-- Criação da tabela de Candidatos
+CREATE TABLE Candidatos (
+    id_candidato INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE,
+    id_emprego INT,
+    FOREIGN KEY (id_emprego) REFERENCES OportunidadesEmprego(id_emprego)
+);
